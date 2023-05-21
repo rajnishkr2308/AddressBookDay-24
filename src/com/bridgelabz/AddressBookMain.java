@@ -7,7 +7,7 @@ public class AddressBookMain {
     public static Map<String,AddressBook> addressBookMap= new HashMap<>();
 
 
-    public static void addAddressBook() {
+    public static void addAddressBook() throws InterruptedException {
         Scanner in = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
@@ -44,7 +44,7 @@ public class AddressBookMain {
         }
     }
 
-    public static void addContacts() {
+    public static void addContacts() throws InterruptedException {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the name of the address book you want to add contact:");
         String name = in.next();
@@ -97,7 +97,7 @@ public class AddressBookMain {
         else
             System.out.println("Given Address Book not Found!!!\n");
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Welcome to Address Book Program in Address Book Main class on Main Branch");
 
         Scanner in = new Scanner(System.in);
