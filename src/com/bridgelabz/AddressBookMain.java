@@ -1,7 +1,9 @@
 package com.bridgelabz;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
+
     public static Map<String,AddressBook> addressBookMap= new HashMap<>();
 
 
@@ -99,7 +101,8 @@ public class AddressBookMain {
 //                listsearchdata.add(cityName);
 
                 List<Contact> cityList = new ArrayList<>();
-                addressBookMap.values().stream().forEach(addressBook -> cityList.addAll(addressBook.getContacts().stream().filter(contact -> contact.getCity().equalsIgnoreCase(cityName)).toList()));
+                addressBookMap.values().stream().forEach(addressBook -> cityList.addAll(addressBook.getContacts().stream().filter(
+                        contact -> contact.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList())));
                 int count1 = cityList.size();
                 System.out.println(count1+" Contacts Found, which belongs to " + cityName +" city");
                 System.out.println(cityList);
@@ -109,7 +112,8 @@ public class AddressBookMain {
                 System.out.print("Enter the name of the State: ");
                 String stateName = in.next();
                 List<Contact> stateList = new ArrayList<>();
-                addressBookMap.values().stream().forEach(addressBook -> stateList.addAll(addressBook.getContacts().stream().filter(contact -> contact.getState().equalsIgnoreCase(stateName)).toList()));
+                addressBookMap.values().stream().forEach(addressBook -> stateList.addAll(addressBook.getContacts().stream().filter(
+                        contact -> contact.getState().equalsIgnoreCase(stateName)).collect(Collectors.toList())));
                 int count2 = stateList.size();
                 System.out.println(count2+" Contacts Found, which belongs to " + stateName +" city");
                 System.out.println(stateList);
@@ -179,4 +183,5 @@ public class AddressBookMain {
             }
         }
     }
+
 }

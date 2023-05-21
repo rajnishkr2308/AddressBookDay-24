@@ -1,12 +1,21 @@
 package com.bridgelabz;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 public class AddressBook {
+    ArrayList<Contact> contacts = new ArrayList<>();
+
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
+
     public void setContacts(ArrayList<Contact> contacts) {
         this.contacts = contacts;
     }
 
     private String addressBookName;
-
     public String getAddressBookName() {
         return addressBookName;
     }
@@ -25,20 +34,20 @@ public class AddressBook {
                 "}\n";
     }
 
-    public void addContact() {
+    public void addContact(){
 
         System.out.println("Enter the details to add a contact:");
 
         System.out.print("Enter First Name: ");
-        String fName = in.next();
+        String fName= in.next();
 
-        List<Contact> duplicateName = contacts.stream().filter(contact -> contact.getFirstName().equals(fName)).toList();
-        if (!(duplicateName.isEmpty())) {
+        List<Contact> duplicateName = contacts.stream().filter(contact-> contact.getFirstName().equals(fName)).collect(Collectors.toList());
+        if (!(duplicateName.isEmpty())){
             System.out.println("Contact with given First Name already exists!!!");
             addContact();
             return;
         }
-        Contact contact = new Contact();
+        Contact contact= new Contact();
         contact.setFirstName(fName);
         System.out.print("Enter Last Name: ");
         contact.setLastName(in.next());
@@ -59,14 +68,14 @@ public class AddressBook {
         System.out.println();
     }
 
-    public void editDetails() {
+    public void editDetails(){
         System.out.println("Enter the First Name of the Contact you want to Edit:");
-        String name = in.next();
-        boolean contactFound = false;
+        String name= in.next();
+        boolean contactFound =false;
 
         for (Contact Temp : contacts) {
             if (name.equals(Temp.getFirstName())) {
-                contactFound = true;
+                contactFound=true;
                 System.out.println("Current Contact Details:");
                 System.out.println(Temp);
                 System.out.println("Enter the name of the Field you want to Edit in Contact's Details:");
@@ -89,27 +98,27 @@ public class AddressBook {
                         Temp.setAddress(in.next());
                         break;
                     case 4:
-                        System.out.println("Current City: " + Temp.getCity());
+                        System.out.println("Current City: "+Temp.getCity());
                         System.out.print("Enter the NEW City: ");
                         Temp.setCity(in.next());
                         break;
                     case 5:
-                        System.out.println("Current State: " + Temp.getState());
+                        System.out.println("Current State: "+Temp.getState());
                         System.out.println("Enter the NEW State: ");
                         Temp.setState(in.next());
                         break;
                     case 6:
-                        System.out.println("Current ZIP Code: " + Temp.getZip());
+                        System.out.println("Current ZIP Code: "+Temp.getZip());
                         System.out.println("Enter the NEW ZIP Code: ");
                         Temp.setZip(in.next());
                         break;
                     case 7:
-                        System.out.println("Current Phone Number: " + Temp.getPhoneNumber());
+                        System.out.println("Current Phone Number: "+Temp.getPhoneNumber());
                         System.out.println("Enter the NEW Phone Number: ");
                         Temp.setPhoneNumber(in.next());
                         break;
                     case 8:
-                        System.out.println("Current Email Address: " + Temp.getEmail());
+                        System.out.println("Current Email Address: "+Temp.getEmail());
                         System.out.println("Enter the NEW Email Address: ");
                         Temp.setEmail(in.next());
                         break;
@@ -122,18 +131,18 @@ public class AddressBook {
                 System.out.println(Temp);
             }
         }
-        if (!contactFound)
+        if(!contactFound)
             System.out.println("Contact with given name NOT FOUND!!!");
     }
 
-    public void deleteDetails() {
+    public void deleteDetails(){
         System.out.println("Enter the First Name of the Contact you want to Delete:");
-        String name = in.next();
-        boolean contactFound = false;
+        String name= in.next();
+        boolean contactFound=false;
 
         for (Contact Temp : contacts) {
             if (Temp.getFirstName().equals(name)) {
-                contactFound = true;
+                contactFound=true;
                 System.out.println("Details of the Contact you want to DELETE:");
                 System.out.println(Temp);
                 System.out.println("Are you sure you want to DELETE the Contact?");
@@ -153,11 +162,7 @@ public class AddressBook {
                 }
             }
         }
-        if (!contactFound)
+        if(!contactFound)
             System.out.println("Contact with given name NOT FOUND!!!");
-    }
-
-    public Arrays getContacts() {
-        return null;
     }
 }
